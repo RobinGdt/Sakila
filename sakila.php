@@ -1,4 +1,4 @@
-j<?php 
+<?php 
 
 $engine = "mysql";
 
