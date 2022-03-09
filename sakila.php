@@ -1,46 +1,25 @@
 j<?php 
 
-//Types de php
 $engine = "mysql";
 
-// IP
 $host = "localhost";
 
-//Port (par defaut, 3306)
 $port = 8889;
 
-//DB name
 $dbName = "sakila";
 
-// Nom d'utilisateur
 $username = "root";
 
-// Passeword
 $passeword = "root";
-
-// PDO : PHP DATA OBJECT
-// ça permet de faire des requêtes SQL et de récupérer des résultats sous forme 
-// de variables PHP (tableaux ou objets)
-// fonctionne avec SQL PostGre SQL ou MySQL
-// Il permet de ssécuriser vos requêtes
-// DSN : Data Source Name
-// $pdo = new PDO("mysql:host=localhost:$port;dbname=db_aviaton",root, root);
 
 $pdo = new PDO("$engine:host=$host:$port;dbname=$dbName",$username, $passeword);
 
 echo "Connecté à la base de données $dbName";
 
-// Etape 1 : on prépare la requête
-// Statement, variable de type PDOstatement
 $statement = $pdo->prepare("SELECT * FROM actor ORDER BY first_name");
 
-// Etape 2 : On execute la requête
 $statement->execute();
 
-// Etape3 (uniquement si on fait un SELECT): On récupère LES résultats
-// $actors = $statement->fetchAll();
-// Si on veut récupérer UN résultat on utilise fetch();
-// $statement->fetch();
 $actors = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
